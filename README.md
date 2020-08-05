@@ -97,7 +97,7 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 ```
 ## Acknowledgments
 
-- This repo is the re-production of the original pytorch [version] (https://github.com/Li-Chongyi/Zero-DCE)
+- This repo is the re-production of the original pytorch [version](https://github.com/Li-Chongyi/Zero-DCE)
 - Thanks you for helping understand more pains that tensorflow may cause.
 - Final words:
     - Any ideas on updating or misunderstanding, please send me an email: <vovantu.hust@gmail.com>
