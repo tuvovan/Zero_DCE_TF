@@ -75,6 +75,15 @@ optional arguments: -h, --help                show this help message and exit
                     --pretrain_dir            PRETRAIN_DIR
 ```
 
+### Testing
+```
+python test.py [-h] [--lowlight_test_image_path]
+```
+
+#### Result
+    Input      |   Output
+:-------------:|:-------------:
+![](rs/1.jpg)  |  ![](rs\1_out.png)
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
