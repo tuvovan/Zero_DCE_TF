@@ -84,16 +84,6 @@ python test.py [-h] [--lowlight_test_image_path]
 ![AudioBlocks](rs/1.jpg) | ![GraphicStock](rs/1_out.png) |
 |:---:|:---:|
 | input | output |
-<p float="left">
-    <figure>
-        <img src="rs/1.jpg" width="50" />
-        <figcaption>Input</figcaption>
-    </figure>
-    <figure>
-        <img src="rs/1_out.png" width="50" /> 
-        <figcaption>Output</figcaption>
-    </figure>
-</p>
 
 ## License
 
