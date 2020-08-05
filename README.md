@@ -35,14 +35,8 @@ pip install -r requirements.txt
     ```
 
 - Train ZERO_DCE 
-    - Please note that the network I'm using here is different from the network from the original repo, however, the loss function is same, as the idea of the paper [[2]](#references) is to train the network using Place2 [[3]](#references) dataset using the loss function from [[2]](#references) and then do fine-tunning on HDR dataset.
-
     ```
     python train.py
-    ```
-- Test ZERO_DCE
-    ```
-    python inpainting/test.py --snapshot <snapshot_path>
     ```
 
 ## Usage
@@ -108,7 +102,7 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 ## Acknowledgments
 
 - This repo is the re-production of the original pytorch [version](https://github.com/Li-Chongyi/Zero-DCE)
-- Thanks you for helping understand more pains that tensorflow may cause.
+- Thanks you for helping to understand more about pains that tensorflow may cause.
 - Final words:
     - Any ideas on updating or misunderstanding, please send me an email: <vovantu.hust@gmail.com>
     - If you find this repo helpful, kindly give me a star.
