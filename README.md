@@ -59,20 +59,20 @@ python train.py [-h] [--lowlight_images_path LOWLIGHT_IMAGES_PATH] [--lr LR]
 ```
 
 ```
-optional arguments: -h, --help            show this help message and exit
-                    --lowlight_images_path LOWLIGHT_IMAGES_PATH
-                    --lr LR
-                    --weight_decay WEIGHT_DECAY
-                    --grad_clip_norm GRAD_CLIP_NORM
-                    --num_epochs NUM_EPOCHS
-                    --train_batch_size TRAIN_BATCH_SIZE
-                    --val_batch_size VAL_BATCH_SIZE
-                    --num_workers NUM_WORKERS
-                    --display_iter DISPLAY_ITER
-                    --snapshot_iter SNAPSHOT_ITER
-                    --snapshots_folder SNAPSHOTS_FOLDER
-                    --load_pretrain LOAD_PRETRAIN
-                    --pretrain_dir PRETRAIN_DIR
+optional arguments: -h, --help                show this help message and exit
+                    --lowlight_images_path    LOWLIGHT_IMAGES_PATH
+                    --lr                      LR
+                    --weight_decay            WEIGHT_DECAY
+                    --grad_clip_norm          GRAD_CLIP_NORM
+                    --num_epochs              NUM_EPOCHS
+                    --train_batch_size        TRAIN_BATCH_SIZE
+                    --val_batch_size          VAL_BATCH_SIZE
+                    --num_workers             NUM_WORKERS
+                    --display_iter            DISPLAY_ITER
+                    --snapshot_iter           SNAPSHOT_ITER
+                    --snapshots_folder        SNAPSHOTS_FOLDER
+                    --load_pretrain           LOAD_PRETRAIN
+                    --pretrain_dir            PRETRAIN_DIR
 ```
 
 ## License
