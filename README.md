@@ -83,9 +83,16 @@ python test.py [-h] [--lowlight_test_image_path]
 #### Result
 
 <p float="left">
-  <img src="rs/1.jpg" width="40%" />
-  <img src="rs/1_out.png" width="40%" /> 
+    <figure>
+        <img src="rs/1.jpg" width="40%" />
+        <figcaption>Input</figcaption>
+    </figure>
+    <figure>
+        <img src="rs/1_out.png" width="40%" /> 
+        <figcaption>Output</figcaption>
+    </figure>
 </p>
+
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
