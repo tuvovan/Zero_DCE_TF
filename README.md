@@ -83,7 +83,13 @@ python test.py [-h] [--lowlight_test_image_path]
 #### Result
     Input      |   Output
 :-------------:|:-------------:
-![](rs/1.jpg)  |  ![](rs\1_out.png)
+![](rs/1.jpg)  |  ![](rs/1_out.png)
+
+<p float="left">
+  <img src="rs/1.jpg" width="40%" />
+  <img src="rs/1_out.png" width="40%" /> 
+  <!-- <img src="/img3.png" width="100" /> -->
+</p>
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
