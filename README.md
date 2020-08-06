@@ -70,6 +70,7 @@ python test.py [-h] [--lowlight_test_image_path]
 
 #### Result
 ![INPUT](rs/1.jpg) | ![OUTPUT](rs/1_out.png) |
+![INPUT](rs/4.jpg) | ![OUTPUT](rs/4_out.png) |
 |:---:|:---:|
 | input | output |
 
