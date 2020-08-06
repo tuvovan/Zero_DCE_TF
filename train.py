@@ -11,16 +11,16 @@ import glob
 
 from src.loss import *
 from model import DCE_x
-from keras import Model, Input
-from keras.layers import Concatenate, Conv2D
+from tensorflow.keras import Model, Input
+from tensorflow.keras.layers import Concatenate, Conv2D
 from PIL import Image
 
 
-def progress(epoch, trained_sample ,total_sample, bar_length=25):
+def progress(epoch, trained_sample ,total_sample, bar_length=25, total_loss=0, message=""):
     percent = float(trained_sample) / total_sample
     hashes = '#' * int(round(percent * bar_length))
     spaces = ' ' * (bar_length - len(hashes))
-    sys.stdout.write("\rEpoch {0}: [{1}] {2}%".format(epoch, hashes + spaces, int(round(percent * 100))))
+    sys.stdout.write("\rEpoch {0}: [{1}] {2}%  ----- Loss: {3}".format(epoch, hashes + spaces, int(round(percent * 100)), float(total_loss)) + message)
     sys.stdout.flush()
 
 def eval(model):
@@ -42,12 +42,12 @@ def eval(model):
         A = model.predict(img_lowlight) 
         r1, r2, r3, r4, r5, r6, r7, r8 = A[:,:,:,:3], A[:,:,:,3:6], A[:,:,:,6:9], A[:,:,:,9:12], A[:,:,:,12:15], A[:,:,:,15:18], A[:,:,:,18:21], A[:,:,:,21:24]
         x = original_img + r1 * (K.pow(original_img,2)-original_img)
-        x = x + r2 * (K.pow(x,2)-x)
-        x = x + r3 * (K.pow(x,2)-x)
+        x = x + r2 * (tf.pow(x,2)-x)
+        x = x + r3 * (tf.pow(x,2)-x)
         enhanced_image_1 = x + r4*(K.pow(x,2)-x)
         x = enhanced_image_1 + r5*(K.pow(enhanced_image_1,2)-enhanced_image_1)		
-        x = x + r6*(K.pow(x,2)-x)	
-        x = x + r7*(K.pow(x,2)-x)
+        x = x + r6*(tf.pow(x,2)-x)	
+        x = x + r7*(tf.pow(x,2)-x)
         enhance_image = x + r8*(K.pow(x,2)-x)
         enhance_image = tf.cast((enhance_image[0,:,:,:] * 255), dtype=np.uint8)
         enhance_image = Image.fromarray(enhance_image.numpy())
@@ -82,19 +82,19 @@ def train(config):
             with tf.GradientTape() as tape:
                 A = model(img_lowlight)
                 r1, r2, r3, r4, r5, r6, r7, r8 = A[:,:,:,:3], A[:,:,:,3:6], A[:,:,:,6:9], A[:,:,:,9:12], A[:,:,:,12:15], A[:,:,:,15:18], A[:,:,:,18:21], A[:,:,:,21:24]
-                x = input_img + r1 * (K.pow(input_img,2)-input_img)
-                x = x + r2 * (K.pow(x,2)-x)
-                x = x + r3 * (K.pow(x,2)-x)
-                enhanced_image_1 = x + r4*(K.pow(x,2)-x)
-                x = enhanced_image_1 + r5*(K.pow(enhanced_image_1,2)-enhanced_image_1)		
-                x = x + r6*(K.pow(x,2)-x)	
-                x = x + r7*(K.pow(x,2)-x)
-                enhance_image = x + r8*(K.pow(x,2)-x)
+                x = img_lowlight + r1 * (tf.pow(img_lowlight,2)-img_lowlight)
+                x = x + r2 * (tf.pow(x,2)-x)
+                x = x + r3 * (tf.pow(x,2)-x)
+                enhanced_image_1 = x + r4*(tf.pow(x,2)-x)
+                x = enhanced_image_1 + r5*(tf.pow(enhanced_image_1,2)-enhanced_image_1)		
+                x = x + r6*(tf.pow(x,2)-x)	
+                x = x + r7*(tf.pow(x,2)-x)
+                enhance_image = x + r8*(tf.pow(x,2)-x)
                 
                 loss_TV = 200*L_TV(A)
-                loss_spa = K.mean(L_spa(enhance_image, img_lowlight))
-                loss_col = 5*K.mean(L_color(enhance_image))
-                loss_exp = 10*K.mean(L_exp(enhance_image, mean_val=0.6))
+                loss_spa = tf.reduce_mean(L_spa(enhance_image, img_lowlight))
+                loss_col = 5*tf.reduce_mean(L_color(enhance_image))
+                loss_exp = 10*tf.reduce_mean(L_exp(enhance_image, mean_val=0.6))
 
                 total_loss = loss_TV + loss_spa + loss_col + loss_exp
 
@@ -102,17 +102,13 @@ def train(config):
 
             optimizer.apply_gradients(zip(grads, model.trainable_weights))
             # if iteration % config.display_iter == 0:
-                # print("Training loss (for one batch) at step %d: %.4f" % (iteration, float(total_loss)))
+            #     print("Training loss (for one batch) at step %d: %.4f" % (iteration, float(total_loss)))
 
-            progress(epoch+1, (iteration+1)*config.train_batch_size, len(train_dataset))
+            progress(epoch+1, (iteration+1), len(train_dataset), total_loss=total_loss)
 
-        if (epoch+1) % config.checkpoint_iter == 0:
-            print('saved weight for epoch %d'%(epoch+1))
-            model.save_weights(os.path.join(config.checkpoints_folder, "Epoch"+str(epoch+1)+'.h5'))
-        
-        if (epoch+1) % config.display_iter == 0:
-            print('evaluating images for epoch %d'%(epoch+1))
-            eval(model)
+            if (iteration+1) % config.checkpoint_iter == 0:
+                progress(epoch+1, (iteration+1), len(train_dataset), total_loss=total_loss, message=' ----- saved weight for epoch ' + str(epoch+1) + ' iter ' + str(iteration+1))
+                model.save_weights(os.path.join(config.checkpoints_folder, "ep_"+str(epoch+1)+"_it_"+str(iteration+1)+".h5"))
 
 
 
