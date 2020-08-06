@@ -43,12 +43,9 @@ pip install -r requirements.txt
 ### Training
 ```
 python train.py [-h] [--lowlight_images_path LOWLIGHT_IMAGES_PATH] [--lr LR]
-                [--weight_decay WEIGHT_DECAY]
-                [--grad_clip_norm GRAD_CLIP_NORM] [--num_epochs NUM_EPOCHS]
-                [--train_batch_size TRAIN_BATCH_SIZE]
-                [--val_batch_size VAL_BATCH_SIZE] [--num_workers NUM_WORKERS]
-                [--display_iter DISPLAY_ITER] [--snapshot_iter SNAPSHOT_ITER]
-                [--snapshots_folder SNAPSHOTS_FOLDER]
+                [--num_epochs NUM_EPOCHS] [--train_batch_size TRAIN_BATCH_SIZE]
+                [--val_batch_size VAL_BATCH_SIZE] [--display_iter DISPLAY_ITER]
+                [--checkpoint_iter CHECKPOINT_ITER] [--checkpoints_folder CHECKPOINTS_FOLDER]
                 [--load_pretrain LOAD_PRETRAIN] [--pretrain_dir PRETRAIN_DIR]
 ```
 
@@ -56,15 +53,12 @@ python train.py [-h] [--lowlight_images_path LOWLIGHT_IMAGES_PATH] [--lr LR]
 optional arguments: -h, --help                show this help message and exit
                     --lowlight_images_path    LOWLIGHT_IMAGES_PATH
                     --lr                      LR
-                    --weight_decay            WEIGHT_DECAY
-                    --grad_clip_norm          GRAD_CLIP_NORM
                     --num_epochs              NUM_EPOCHS
                     --train_batch_size        TRAIN_BATCH_SIZE
                     --val_batch_size          VAL_BATCH_SIZE
-                    --num_workers             NUM_WORKERS
                     --display_iter            DISPLAY_ITER
-                    --snapshot_iter           SNAPSHOT_ITER
-                    --snapshots_folder        SNAPSHOTS_FOLDER
+                    --checkpoint_iter         CHECKPOINT_ITER
+                    --checkpoints_folder      CHECKPOINTS_FOLDER
                     --load_pretrain           LOAD_PRETRAIN
                     --pretrain_dir            PRETRAIN_DIR
 ```
@@ -75,7 +69,7 @@ python test.py [-h] [--lowlight_test_image_path]
 ```
 
 #### Result
-![AudioBlocks](rs/1.jpg) | ![GraphicStock](rs/1_out.png) |
+![INPUT](rs/1.jpg) | ![OUTPUT](rs/1_out.png) |
 |:---:|:---:|
 | input | output |
 

@@ -46,13 +46,13 @@ class DataGenerator(keras.utils.Sequence):
         if self.shuffle == True:
             np.random.shuffle(self.indexes)
 
-    def __data_generation(self, list_IDs_temp):
+    def __data_generation(self, indexes):
         'Generates data containing batch_size samples' # X : (n_samples, *dim, n_channels)
         # Initialization
         X = np.empty((self.batch_size, self.size, self.size, self.n_channels))
 
         # Generate data
-        for i, ID in enumerate(list_IDs_temp):
+        for i, ID in enumerate(indexes):
             # Store sample
             data_lowlight_path = ID
 		
@@ -61,7 +61,6 @@ class DataGenerator(keras.utils.Sequence):
             data_lowlight = data_lowlight.resize((self.size,self.size), Image.ANTIALIAS)
 
             data_lowlight = (np.asarray(data_lowlight)/255.0) 
-            # data_lowlight = torch.from_numpy(data_lowlight).float()
             X[i,] = data_lowlight
 
-        return K.constant(X)
+        return K.variable(X)
