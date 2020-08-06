@@ -1,0 +1,4 @@
+numpy==1.14.4
+PIL== 8.0.0
+tensorflow-gpu==2.2.0
+keras==2.3.0
