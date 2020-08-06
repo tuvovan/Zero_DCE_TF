@@ -31,7 +31,7 @@ pip install -r requirements.txt
     - Run this file to generate data. (Please remember to change path first)
 
     ```
-    python prepare_data.py
+    python src/prepare_data.py
     ```
 
 - Train ZERO_DCE 

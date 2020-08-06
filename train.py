@@ -9,7 +9,7 @@ import data_lowlight
 import numpy as np
 import glob
 
-from loss import *
+from src.loss import *
 from model import DCE_x
 from keras import Model, Input
 from keras.layers import Concatenate, Conv2D
