@@ -24,7 +24,7 @@ pip install -r requirements.txt
 ```
 
 ## Running
-### Training Pretraining
+### Training 
 - Preprocess
     - Download the training data at [Google Drive](https://drive.google.com/file/d/1HiLtYiyT9R7dR9DRTLRlUUrAicC4zzWN/view).
 
@@ -39,6 +39,10 @@ pip install -r requirements.txt
     python train.py
     ```
 
+- Test ZERO_DCE
+    ```
+    python test.py
+    ```
 ## Usage
 ### Training
 ```
@@ -66,6 +70,10 @@ optional arguments: -h, --help                show this help message and exit
 ### Testing
 ```
 python test.py [-h] [--lowlight_test_image_path]
+```
+```
+optional arguments: -h, --help                    show this help message and exit
+                    --lowlight_test_image_path    LOWLIGHT_TEST_IMAGES_PATH
 ```
 
 #### Result

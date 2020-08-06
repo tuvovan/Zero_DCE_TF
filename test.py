@@ -16,6 +16,8 @@ from keras import Model, Input
 from keras.layers import Concatenate, Conv2D
 
 tf.compat.v1.enable_eager_execution()
+parser.add_argument('--lowlight_test_image_path', type=float, default='rs/01.jpg')
+config = parser.parse_args()
 
 input_img = Input(shape=(512, 512, 3))
 conv1 = Conv2D(32, (3, 3), strides=(1,1), activation='relu', padding='same')(input_img)
@@ -34,7 +36,7 @@ model = Model(inputs=input_img, outputs = x_r)
 model.load_weights("weights/Epoch1.h5")
 
 ### load image ###
-data_lowlight_path = "test/01.jpg"
+data_lowlight_path = config.lowlight_test_image_path
 original_img = Image.open(data_lowlight_path)
 original_size = (np.array(original_img).shape[1], np.array(original_img).shape[0])
 
@@ -63,4 +65,4 @@ enhance_image = x + r8*(K.pow(x,2)-x)
 enhance_image = tf.cast((enhance_image[0,:,:,:] * 255), dtype=np.uint8)
 enhance_image = Image.fromarray(enhance_image.numpy())
 enhance_image = enhance_image.resize(original_size, Image.ANTIALIAS)
-enhance_image.save("01.png")
+enhance_image.save(data_lowlight_path.replace('jpg, _rs.jpg'))
