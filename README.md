@@ -80,11 +80,8 @@ optional arguments: -h, --help                    show this help message and exi
 ![INPUT](rs/1.bmp) | ![OUTPUT](rs/1_4_700.bmp) |
 |:---:|:---:|
 ![INPUT](rs/2.bmp) | ![OUTPUT](rs/2_4_700.bmp) |
-|:---:|:---:|
 ![INPUT](rs/3.bmp) | ![OUTPUT](rs/3_4_700.bmp) |
-|:---:|:---:|
 ![INPUT](rs/4.bmp) | ![OUTPUT](rs/4_4_700.bmp) |
-|:---:|:---:|
 ![INPUT](rs/5.bmp) | ![OUTPUT](rs/5_4_700.bmp) |
 | input | output |
 
