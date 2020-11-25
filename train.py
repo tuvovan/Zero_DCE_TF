@@ -10,7 +10,7 @@ import glob
 
 from src import *
 from src.loss import *
-from model import DCE_x
+from src.model import DCE_x
 from tensorflow.keras import Model, Input
 from tensorflow.keras.layers import Concatenate, Conv2D
 from PIL import Image
