@@ -5,21 +5,20 @@ import os
 import sys
 import argparse 
 import time
-import data_lowlight
-import model
 import numpy as np
 import glob
 
+from src import *
 from PIL import Image
-from loss import *
-from model import DCE_x
+from src.loss import *
+from src.model import DCE_x
 from keras import Model, Input
 from keras.layers import Concatenate, Conv2D
 
 tf.compat.v1.enable_eager_execution()
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--lowlight_test_images_path', type=str, default="/home/inhand/Tu/DCE/test/DICM/")
+parser.add_argument('--lowlight_test_images_path', type=str, default="/home/inhand/Tu/DCE/test/LIME/")
 config = parser.parse_args()
 
 def test(lowlight_test_images_path):
