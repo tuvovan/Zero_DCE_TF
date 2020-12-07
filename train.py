@@ -1,14 +1,15 @@
-import keras
-import tensorflow as tf 
-import keras.backend as K
 import os
 import sys
+import glob
 import argparse 
 import time
 import numpy as np
-import glob
+import tensorflow as tf 
+import tensorflow.keras.backend as K
 
 from src import *
+from tensorflow import keras
+from src import data_lowlight
 from src.loss import *
 from src.model import DCE_x
 from tensorflow.keras import Model, Input
@@ -76,6 +77,7 @@ def train(config):
 
     model = Model(inputs=input_img, outputs = x_r)
     
+    min_loss = 10000.0
     print("Start training ...")
     for epoch in range(config.num_epochs):
         for iteration, img_lowlight in enumerate(train_dataset):
@@ -106,7 +108,8 @@ def train(config):
 
             progress(epoch+1, (iteration+1), len(train_dataset), total_loss=total_loss)
 
-            if (iteration+1) % config.checkpoint_iter == 0:
+            if (iteration+1) % config.checkpoint_iter == 0 and total_loss < min_loss:
+                min_loss = total_loss
                 progress(epoch+1, (iteration+1), len(train_dataset), total_loss=total_loss, message=' ----- saved weight for epoch ' + str(epoch+1) + ' iter ' + str(iteration+1))
                 model.save_weights(os.path.join(config.checkpoints_folder, "ep_"+str(epoch+1)+"_it_"+str(iteration+1)+".h5"))
 
@@ -118,7 +121,7 @@ if __name__ == "__main__":
 	parser = argparse.ArgumentParser()
 
 	# Input Parameters
-	parser.add_argument('--lowlight_images_path', type=str, default="/home/inhand/Tu/DCE/Dataset_Part1/")
+	parser.add_argument('--lowlight_images_path', type=str, default="Dataset_Part1/All/")
 	parser.add_argument('--lr', type=float, default=0.0001)
 	parser.add_argument('--gpu', type=int, default=0)
 	parser.add_argument('--grad_clip_norm', type=float, default=0.1)

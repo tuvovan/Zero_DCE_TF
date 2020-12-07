@@ -7,7 +7,7 @@ import glob
 from PIL import Image
 
 def populate_train_list(lowlight_images_path):
-    image_list_lowlight = glob.glob(lowlight_images_path + "*.jpg")
+    image_list_lowlight = glob.glob(lowlight_images_path + "*.JPG")
 
     train_list = image_list_lowlight
 

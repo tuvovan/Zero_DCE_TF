@@ -1,10 +1,10 @@
-import keras
-import keras.backend as K
-
-from keras import Sequential, Input, Model
-from keras.layers import Conv2D, Activation, Concatenate
 import math
 import numpy as np
+import tensorflow.keras.backend as K
+
+from tensorflow import keras
+from tensorflow.keras import Sequential, Input, Model
+from tensorflow.keras.layers import Conv2D, Activation, Concatenate
 
 def DCE_x(input_shape):
     input_img = Input(shape=input_shape)
