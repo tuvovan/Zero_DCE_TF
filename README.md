@@ -1,11 +1,15 @@
 # Zero-DCE TF
 The Tensorflow Implementation of the [Zero-Reference Deep Curve Estimation for Low-Light Image Enhancement](https://openaccess.thecvf.com/content_CVPR_2020/papers/Guo_Zero-Reference_Deep_Curve_Estimation_for_Low-Light_Image_Enhancement_CVPR_2020_paper.pdf) - CVPR 2020
+
+## Update:
+I pushed my project to Google Cloud Platform. May need more improvement. Should you have any comment or inquiries or just basically want to enhance your images, give it a try [here](http://34.64.150.58/)
 ## Content
 - [Zero-DCE](#zero-dce-tf)
 - [Getting Started](#getting-tarted)
 - [Running](#running)
 - [References](#references)
 - [Citations](#citation)
+- [Try Yourself](#try-on-web)
 
 ## Getting Started
 
@@ -105,6 +109,9 @@ This project is licensed under the MIT License - see the [LICENSE](https://githu
     primaryClass={cs.CV}
 }
 ```
+
+## Try on web
+The project is now available on GCP. [Give it a try](http://34.64.150.58/)
 ## Acknowledgments
 
 - This repo is the re-production of the original pytorch [version](https://github.com/Li-Chongyi/Zero-DCE)
