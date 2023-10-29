@@ -44,12 +44,12 @@ def test(lowlight_test_images_path):
         original_img = Image.open(data_lowlight_path)
         original_size = (np.array(original_img).shape[1], np.array(original_img).shape[0])
 
-        original_img = original_img.resize((512,512), Image.ANTIALIAS) 
+        original_img = original_img.resize((512,512), Image.LANCZOS) 
         original_img = (np.asarray(original_img)/255.0)
 
         img_lowlight = Image.open(data_lowlight_path)
                 
-        img_lowlight = img_lowlight.resize((512,512), Image.ANTIALIAS)
+        img_lowlight = img_lowlight.resize((512,512), Image.LANCZOS)
 
         img_lowlight = (np.asarray(img_lowlight)/255.0) 
         img_lowlight = np.expand_dims(img_lowlight, 0)
@@ -68,7 +68,7 @@ def test(lowlight_test_images_path):
         enhance_image = x + r8*(K.pow(x,2)-x)
         enhance_image = tf.cast((enhance_image[0,:,:,:] * 255), dtype=np.uint8)
         enhance_image = Image.fromarray(enhance_image.numpy())
-        enhance_image = enhance_image.resize(original_size, Image.ANTIALIAS)
+        enhance_image = enhance_image.resize(original_size, Image.LANCZOS)
         enhance_image.save(test_file.replace(".bmp", "_rs.bmp"))
 
 test(config.lowlight_test_images_path)
