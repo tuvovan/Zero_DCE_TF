@@ -58,7 +58,7 @@ class DataGenerator(keras.utils.Sequence):
 		
             data_lowlight = Image.open(data_lowlight_path)
             
-            data_lowlight = data_lowlight.resize((self.size,self.size), Image.ANTIALIAS)
+            data_lowlight = data_lowlight.resize((self.size,self.size), Image.LANCZOS)
 
             data_lowlight = (np.asarray(data_lowlight)/255.0) 
             X[i,] = data_lowlight
