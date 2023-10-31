@@ -6,7 +6,7 @@ import time
 import numpy as np
 import tensorflow as tf 
 import tensorflow.keras.backend as K
-
+from tensorflow.keras.callbacks import ModelCheckpoint
 from src import *
 from tensorflow import keras
 from src import data_lowlight
@@ -78,6 +78,12 @@ def train(config):
     model = Model(inputs=input_img, outputs = x_r)
     
     min_loss = 10000.0
+	# Define the checkpoint callback to monitor 'total_loss'
+    checkpoint = ModelCheckpoint(os.path.join(config.checkpoints_folder, "best.h5"),
+				 monitor='val_loss', 
+				 verbose=1,
+				 save_best_only=True,
+				 mode='min')
     print("Start training ...")
     for epoch in range(config.num_epochs):
         for iteration, img_lowlight in enumerate(train_dataset):
