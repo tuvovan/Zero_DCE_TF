@@ -15,7 +15,7 @@ config.gpu_options.allow_growth = True
 session = tf.compat.v1.Session(config=config)
 
 # Setting up argument parser
-parser = argparse.ArgumentParser(description="Zero-DCE video implementation. Matroska containers are recommended as input files to increase compatibility. Output video is FF1V encoded with audio tracks copied from input video.")
+parser = argparse.ArgumentParser(description="Zero-DCE video implementation. Matroska containers are recommended as input files to increase compatibility. Output video is HuffYUV encoded with audio tracks copied from input video.")
 parser.add_argument('--input_video', type=str, required=True, help='Input video file.')
 parser.add_argument('--output_video', type=str, default="output.mkv", required=False, help='Output video file.')
 parser.add_argument('--max_frames', type=int, default=None, help="Maximum number of frames to process from the input video. Useful for testing the model before processing the entire video.")
@@ -76,7 +76,7 @@ def save_frames_as_video(input_video, output_video, max_frames, dar):
     enhanced_clip = enhanced_clip.set_audio(video.audio)
 
     # Write the video with desired codec
-    enhanced_clip.write_videofile(output_video, codec='ffv1', audio=True, ffmpeg_params=["-acodec", "copy", "-aspect", dar])
+    enhanced_clip.write_videofile(output_video, codec='huffyuv', audio=True, ffmpeg_params=["-acodec", "copy", "-aspect", dar])
 
 def main():
     save_frames_as_video(args.input_video, args.output_video, args.max_frames, args.dar)
