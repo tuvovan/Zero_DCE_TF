@@ -80,6 +80,16 @@ optional arguments: -h, --help                    show this help message and exi
                     --lowlight_test_image_path    LOWLIGHT_TEST_IMAGES_PATH
 ```
 
+### Video-DCE
+Video-DCE is a simple adaptation of the lowlight image enhancement script to take videos as input, processing individual frames with the model, then outputing a FF1V encoded video while copying the existing audio track from the input video. Unlike the image processing scripts, Video-DCE will not resize the input video frames in order to process them. The output video will mimic the input's video FPS, but you can specify a different Display Aspect Ratio if needed.
+
+```
+usage: video-dce.py [-h] --input_video INPUT_VIDEO [--output_video OUTPUT_VIDEO] [--max_frames MAX_FRAMES] [--dar DAR]
+```
+`MAX_FRAMES` can be useful for testing results out of a portion of the video. Frame counting will always start from zero.
+
+The script has only been tested with SD resolution videos (720x486, 640x480 and 720x480) as it's my main use case, so there might be bugs depending on the resolution of your input video.
+
 #### Result
 ![INPUT](rs/1.bmp) | ![OUTPUT](rs/1_4_700.bmp) |
 |:---:|:---:|
